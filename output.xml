@@ -1,759 +1,290 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generated="20170522 14:27:58.194" generator="Robot 3.0.2 (Python 2.7.12 on linux2)">
+<robot generated="20170523 00:07:22.667" generator="Robot 3.0.2 (Python 2.7.12 on linux2)">
 <suite source="/home/robot/workspace/project-ci-saera-mattiass" id="s1" name="Project-Ci-Saera-Mattiass">
-<suite source="/home/robot/workspace/project-ci-saera-mattiass/robot-framework-backend" id="s1-s1" name="Robot-Framework-Backend">
-<suite source="/home/robot/workspace/project-ci-saera-mattiass/robot-framework-backend/test_suite.robot" id="s1-s1-s1" name="Test Suite">
-<test id="s1-s1-s1-t1" name="Test case 1 - Get Specific Client">
-<kw name="Get Specific Clients" library="client_operations">
-<kw name="Get The ID of The Last Client" library="client_operations">
-<assign>
-<var>${id}</var>
-</assign>
-<kw name="Create Http Context" library="HttpLibrary.HTTP">
-<doc>Sets the HTTP host to use for future requests. You must call this</doc>
+<suite source="/home/robot/workspace/project-ci-saera-mattiass/robot-framework-frontend" id="s1-s1" name="Robot-Framework-Frontend">
+<suite source="/home/robot/workspace/project-ci-saera-mattiass/robot-framework-frontend/regression_suite.robot" id="s1-s1-s1" name="Regression Suite">
+<test id="s1-s1-s1-t1" name="Test delete client">
+<kw type="setup" name="Setup" library="test_setup_and_teardown">
+<kw name="Set Environment Variable" library="OperatingSystem">
+<doc>Sets an environment variable to a specified value.</doc>
 <arguments>
-<arg>${host}</arg>
-<arg>${schema}</arg>
+<arg>${driver_name}</arg>
+<arg>${chromedriver_location}</arg>
 </arguments>
-<msg timestamp="20170522 14:27:58.545" level="INFO">Host for next HTTP request set to 'localhost:8080'</msg>
-<msg timestamp="20170522 14:27:58.545" level="INFO">Scheme for next HTTP request set to 'http'</msg>
-<status status="PASS" endtime="20170522 14:27:58.545" starttime="20170522 14:27:58.543"></status>
+<msg timestamp="20170523 00:07:23.304" level="INFO">Environment variable 'webdriver.chrome.driver' set to value '/usr/local/bin/chromedriver'.</msg>
+<status status="PASS" endtime="20170523 00:07:23.304" starttime="20170523 00:07:23.303"></status>
 </kw>
-<kw name="GET" library="HttpLibrary.HTTP">
-<doc>Issues a HTTP GET request.</doc>
+<kw name="Open Browser" library="Selenium2Library">
+<doc>Opens a new browser instance to given URL.</doc>
 <arguments>
-<arg>${get_all_clients_endpoint}</arg>
+<arg>${base_url}</arg>
+<arg>browser=${chrome_browser}</arg>
 </arguments>
-<status status="PASS" endtime="20170522 14:27:58.570" starttime="20170522 14:27:58.547"></status>
+<msg timestamp="20170523 00:07:23.307" level="INFO">Opening browser 'chrome' to base url 'http://localhost:8080/hotel/faces/login/login.xhtml'</msg>
+<status status="PASS" endtime="20170523 00:07:26.369" starttime="20170523 00:07:23.306"></status>
 </kw>
-<kw name="Get Response Status" library="HttpLibrary.HTTP">
-<doc>Returns the response status line (e.g. "200 OK" or "404 Not found")</doc>
-<assign>
-<var>${response_status_first_request}</var>
-</assign>
-<msg timestamp="20170522 14:27:58.574" level="INFO">${response_status_first_request} = 200 OK</msg>
-<status status="PASS" endtime="20170522 14:27:58.574" starttime="20170522 14:27:58.573"></status>
+<kw name="Maximize Browser Window" library="Selenium2Library">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" endtime="20170523 00:07:26.569" starttime="20170523 00:07:26.376"></status>
 </kw>
-<kw name="Should Contain" library="BuiltIn">
-<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<kw name="Set Selenium Speed" library="Selenium2Library">
+<doc>Sets the delay in seconds that is waited after each Selenium command.</doc>
 <arguments>
-<arg>${response_status_first_request}</arg>
-<arg>200</arg>
+<arg>.2</arg>
 </arguments>
-<status status="PASS" endtime="20170522 14:27:58.575" starttime="20170522 14:27:58.574"></status>
+<status status="PASS" endtime="20170523 00:07:26.570" starttime="20170523 00:07:26.570"></status>
 </kw>
-<kw name="Get Response Body" library="HttpLibrary.HTTP">
-<doc>Get the response body.</doc>
-<assign>
-<var>${body_first_request}</var>
-</assign>
-<msg timestamp="20170522 14:27:58.577" level="INFO">${body_first_request} = [{"id":1,"name":"JO\xc3\x83O PAULO","createDate":1451602800000,"email":"JP.ALENCAR@HOTMAIL.COM","gender":"M","socialSecurityNumber":"14190842"},{"id":4,"name":"THALLYS","createDate":1451602800000,"ema...</msg>
-<status status="PASS" endtime="20170522 14:27:58.577" starttime="20170522 14:27:58.575"></status>
-</kw>
-<kw name="GET" library="HttpLibrary.HTTP">
-<doc>Issues a HTTP GET request.</doc>
+<kw name="Set Selenium Timeout" library="Selenium2Library">
+<doc>Sets the timeout in seconds used by various keywords.</doc>
 <arguments>
-<arg>${get_client_counter_endpoint}</arg>
+<arg>30</arg>
 </arguments>
-<status status="PASS" endtime="20170522 14:27:58.585" starttime="20170522 14:27:58.577"></status>
+<status status="PASS" endtime="20170523 00:07:26.773" starttime="20170523 00:07:26.571"></status>
 </kw>
-<kw name="Get Response Status" library="HttpLibrary.HTTP">
-<doc>Returns the response status line (e.g. "200 OK" or "404 Not found")</doc>
-<assign>
-<var>${response_status_second_request}</var>
-</assign>
-<msg timestamp="20170522 14:27:58.611" level="INFO">${response_status_second_request} = 200 OK</msg>
-<status status="PASS" endtime="20170522 14:27:58.616" starttime="20170522 14:27:58.602"></status>
+<kw name="Delete All Cookies" library="Selenium2Library">
+<doc>Deletes all cookies.</doc>
+<status status="PASS" endtime="20170523 00:07:26.992" starttime="20170523 00:07:26.773"></status>
 </kw>
-<kw name="Should Contain" library="BuiltIn">
-<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<kw name="Location Should Be" library="Selenium2Library">
+<doc>Verifies that current URL is exactly `url`.</doc>
 <arguments>
-<arg>${response_status_second_request}</arg>
-<arg>200</arg>
+<arg>${base_url}</arg>
 </arguments>
-<status status="PASS" endtime="20170522 14:27:58.618" starttime="20170522 14:27:58.617"></status>
+<msg timestamp="20170523 00:07:27.204" level="INFO">Current location is 'http://localhost:8080/hotel/faces/login/login.xhtml'.</msg>
+<status status="PASS" endtime="20170523 00:07:27.205" starttime="20170523 00:07:26.992"></status>
 </kw>
-<kw name="Get Response Body" library="HttpLibrary.HTTP">
-<doc>Get the response body.</doc>
-<assign>
-<var>${body_second_request}</var>
-</assign>
-<msg timestamp="20170522 14:27:58.621" level="INFO">${body_second_request} = 10</msg>
-<status status="PASS" endtime="20170522 14:27:58.621" starttime="20170522 14:27:58.618"></status>
+<status status="PASS" endtime="20170523 00:07:27.205" starttime="20170523 00:07:23.301"></status>
 </kw>
-<kw name="Log To Console" library="BuiltIn">
-<doc>Logs the given message to the console.</doc>
+<kw name="login_into_the_system" library="page_login">
+<kw name="Input Text" library="Selenium2Library">
+<doc>Types the given `text` into text field identified by `locator`.</doc>
 <arguments>
-<arg>${body_second_request}</arg>
+<arg>${login_pg_username_textfield}</arg>
+<arg>${username}</arg>
 </arguments>
-<status status="PASS" endtime="20170522 14:27:58.624" starttime="20170522 14:27:58.622"></status>
+<msg timestamp="20170523 00:07:27.207" level="INFO">Typing text 'marc' into text field 'id=login'</msg>
+<status status="PASS" endtime="20170523 00:07:28.074" starttime="20170523 00:07:27.206"></status>
 </kw>
-<kw name="Evaluate" library="BuiltIn">
-<doc>Evaluates the given expression in Python and returns the results.</doc>
+<kw name="Input Text" library="Selenium2Library">
+<doc>Types the given `text` into text field identified by `locator`.</doc>
 <arguments>
-<arg>${body_second_request}-1</arg>
+<arg>${login_pg_password_textfield}</arg>
+<arg>${password}</arg>
 </arguments>
-<assign>
-<var>${last_index}</var>
-</assign>
-<msg timestamp="20170522 14:27:58.636" level="INFO">${last_index} = 9</msg>
-<status status="PASS" endtime="20170522 14:27:58.637" starttime="20170522 14:27:58.634"></status>
+<msg timestamp="20170523 00:07:28.075" level="INFO">Typing text '1010' into text field 'id=senha'</msg>
+<status status="PASS" endtime="20170523 00:07:28.882" starttime="20170523 00:07:28.074"></status>
 </kw>
-<kw name="Log To Console" library="BuiltIn">
-<doc>Logs the given message to the console.</doc>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click element identified by `locator`.</doc>
 <arguments>
-<arg>${last_index}</arg>
+<arg>${login_pg_btn_login}</arg>
 </arguments>
-<status status="PASS" endtime="20170522 14:27:58.641" starttime="20170522 14:27:58.639"></status>
+<msg timestamp="20170523 00:07:28.885" level="INFO">Clicking element 'id=loginBtn'.</msg>
+<status status="PASS" endtime="20170523 00:07:30.174" starttime="20170523 00:07:28.883"></status>
 </kw>
-<kw name="Get Json Value" library="HttpLibrary.HTTP">
-<doc>Get the target node of the JSON document `json_string` specified by `json_pointer`.</doc>
+<kw name="Wait Until Page Contains" library="Selenium2Library">
+<doc>Waits until `text` appears on current page.</doc>
 <arguments>
-<arg>${body_first_request}</arg>
-<arg>/${last_index}/id</arg>
+<arg>${dashboard_pg_label_dashboard}</arg>
 </arguments>
-<assign>
-<var>${json_id}</var>
-</assign>
-<msg timestamp="20170522 14:27:58.646" level="INFO">${json_id} = 24</msg>
-<status status="PASS" endtime="20170522 14:27:58.657" starttime="20170522 14:27:58.643"></status>
+<status status="PASS" endtime="20170523 00:07:30.431" starttime="20170523 00:07:30.175"></status>
 </kw>
-<kw name="Log To Console" library="BuiltIn">
-<doc>Logs the given message to the console.</doc>
+<status status="PASS" endtime="20170523 00:07:30.432" starttime="20170523 00:07:27.206"></status>
+</kw>
+<kw name="perform nav client" library="page_dashboard">
+<kw name="Wait Until Page Contains Element" library="Selenium2Library">
+<doc>Waits until element specified with `locator` appears on current page.</doc>
 <arguments>
-<arg>${json_id}</arg>
+<arg>${client_menu}</arg>
 </arguments>
-<status status="PASS" endtime="20170522 14:27:58.668" starttime="20170522 14:27:58.665"></status>
+<status status="PASS" endtime="20170523 00:07:30.687" starttime="20170523 00:07:30.434"></status>
 </kw>
-<msg timestamp="20170522 14:27:58.674" level="INFO">${id} = 24</msg>
-<status status="PASS" endtime="20170522 14:27:58.680" starttime="20170522 14:27:58.541"></status>
-</kw>
-<kw name="Create Http Context" library="HttpLibrary.HTTP">
-<doc>Sets the HTTP host to use for future requests. You must call this</doc>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click element identified by `locator`.</doc>
 <arguments>
-<arg>${host}</arg>
-<arg>${schema}</arg>
+<arg>${client_menu}</arg>
 </arguments>
-<msg timestamp="20170522 14:27:58.682" level="INFO">Host for next HTTP request set to 'localhost:8080'</msg>
-<msg timestamp="20170522 14:27:58.682" level="INFO">Scheme for next HTTP request set to 'http'</msg>
-<status status="PASS" endtime="20170522 14:27:58.682" starttime="20170522 14:27:58.681"></status>
+<msg timestamp="20170523 00:07:30.688" level="INFO">Clicking element 'xpath=//*[@id='side-menu']/li[5]/a'.</msg>
+<status status="PASS" endtime="20170523 00:07:31.646" starttime="20170523 00:07:30.688"></status>
 </kw>
-<kw name="GET" library="HttpLibrary.HTTP">
-<doc>Issues a HTTP GET request.</doc>
+<status status="PASS" endtime="20170523 00:07:31.646" starttime="20170523 00:07:30.433"></status>
+</kw>
+<kw name="perform nav to create new client" library="page_client">
+<kw name="Wait Until Page Contains Element" library="Selenium2Library">
+<doc>Waits until element specified with `locator` appears on current page.</doc>
 <arguments>
-<arg>${get_Specific_client_endpoint}${id}</arg>
+<arg>${create_new_client_button}</arg>
 </arguments>
-<status status="PASS" endtime="20170522 14:27:58.701" starttime="20170522 14:27:58.683"></status>
+<status status="PASS" endtime="20170523 00:07:31.878" starttime="20170523 00:07:31.648"></status>
 </kw>
-<kw name="Get Response Status" library="HttpLibrary.HTTP">
-<doc>Returns the response status line (e.g. "200 OK" or "404 Not found")</doc>
-<assign>
-<var>${status_code}</var>
-</assign>
-<msg timestamp="20170522 14:27:58.713" level="INFO">${status_code} = 200 OK</msg>
-<status status="PASS" endtime="20170522 14:27:58.713" starttime="20170522 14:27:58.707"></status>
-</kw>
-<kw name="Get Response Body" library="HttpLibrary.HTTP">
-<doc>Get the response body.</doc>
-<assign>
-<var>${body}</var>
-</assign>
-<msg timestamp="20170522 14:27:58.715" level="INFO">${body} = {"id":24,"name":"tkbdamgfgn","createDate":1451602800000,"email":"tkbdamgfgn@hotmail.com\"","gender":"F","socialSecurityNumber":"036161109"}</msg>
-<status status="PASS" endtime="20170522 14:27:58.715" starttime="20170522 14:27:58.714"></status>
-</kw>
-<kw name="Should Contain" library="BuiltIn">
-<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click element identified by `locator`.</doc>
 <arguments>
-<arg>${status_code}</arg>
-<arg>200</arg>
+<arg>${create_new_client_button}</arg>
 </arguments>
-<status status="PASS" endtime="20170522 14:27:58.716" starttime="20170522 14:27:58.716"></status>
+<msg timestamp="20170523 00:07:31.881" level="INFO">Clicking element 'xpath=//*[@id='j_idt50']/a[1]'.</msg>
+<status status="PASS" endtime="20170523 00:07:32.699" starttime="20170523 00:07:31.880"></status>
 </kw>
-<status status="PASS" endtime="20170522 14:27:58.717" starttime="20170522 14:27:58.540"></status>
+<status status="PASS" endtime="20170523 00:07:32.700" starttime="20170523 00:07:31.647"></status>
 </kw>
-<status status="PASS" endtime="20170522 14:27:58.717" critical="yes" starttime="20170522 14:27:58.539"></status>
-</test>
-<test id="s1-s1-s1-t2" name="Test case 2 - Delete Last Client">
-<kw name="Delete Last Client" library="client_operations">
-<kw name="Get The ID of The Last Client" library="client_operations">
-<assign>
-<var>${id}</var>
-</assign>
-<kw name="Create Http Context" library="HttpLibrary.HTTP">
-<doc>Sets the HTTP host to use for future requests. You must call this</doc>
-<arguments>
-<arg>${host}</arg>
-<arg>${schema}</arg>
-</arguments>
-<msg timestamp="20170522 14:27:58.726" level="INFO">Host for next HTTP request set to 'localhost:8080'</msg>
-<msg timestamp="20170522 14:27:58.727" level="INFO">Scheme for next HTTP request set to 'http'</msg>
-<status status="PASS" endtime="20170522 14:27:58.727" starttime="20170522 14:27:58.726"></status>
-</kw>
-<kw name="GET" library="HttpLibrary.HTTP">
-<doc>Issues a HTTP GET request.</doc>
-<arguments>
-<arg>${get_all_clients_endpoint}</arg>
-</arguments>
-<status status="PASS" endtime="20170522 14:27:58.748" starttime="20170522 14:27:58.728"></status>
-</kw>
-<kw name="Get Response Status" library="HttpLibrary.HTTP">
-<doc>Returns the response status line (e.g. "200 OK" or "404 Not found")</doc>
-<assign>
-<var>${response_status_first_request}</var>
-</assign>
-<msg timestamp="20170522 14:27:58.750" level="INFO">${response_status_first_request} = 200 OK</msg>
-<status status="PASS" endtime="20170522 14:27:58.750" starttime="20170522 14:27:58.749"></status>
-</kw>
-<kw name="Should Contain" library="BuiltIn">
-<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
-<arguments>
-<arg>${response_status_first_request}</arg>
-<arg>200</arg>
-</arguments>
-<status status="PASS" endtime="20170522 14:27:58.751" starttime="20170522 14:27:58.751"></status>
-</kw>
-<kw name="Get Response Body" library="HttpLibrary.HTTP">
-<doc>Get the response body.</doc>
-<assign>
-<var>${body_first_request}</var>
-</assign>
-<msg timestamp="20170522 14:27:58.753" level="INFO">${body_first_request} = [{"id":1,"name":"JO\xc3\x83O PAULO","createDate":1451602800000,"email":"JP.ALENCAR@HOTMAIL.COM","gender":"M","socialSecurityNumber":"14190842"},{"id":4,"name":"THALLYS","createDate":1451602800000,"ema...</msg>
-<status status="PASS" endtime="20170522 14:27:58.753" starttime="20170522 14:27:58.752"></status>
-</kw>
-<kw name="GET" library="HttpLibrary.HTTP">
-<doc>Issues a HTTP GET request.</doc>
-<arguments>
-<arg>${get_client_counter_endpoint}</arg>
-</arguments>
-<status status="PASS" endtime="20170522 14:27:58.772" starttime="20170522 14:27:58.754"></status>
-</kw>
-<kw name="Get Response Status" library="HttpLibrary.HTTP">
-<doc>Returns the response status line (e.g. "200 OK" or "404 Not found")</doc>
-<assign>
-<var>${response_status_second_request}</var>
-</assign>
-<msg timestamp="20170522 14:27:58.776" level="INFO">${response_status_second_request} = 200 OK</msg>
-<status status="PASS" endtime="20170522 14:27:58.776" starttime="20170522 14:27:58.773"></status>
-</kw>
-<kw name="Should Contain" library="BuiltIn">
-<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
-<arguments>
-<arg>${response_status_second_request}</arg>
-<arg>200</arg>
-</arguments>
-<status status="PASS" endtime="20170522 14:27:58.777" starttime="20170522 14:27:58.777"></status>
-</kw>
-<kw name="Get Response Body" library="HttpLibrary.HTTP">
-<doc>Get the response body.</doc>
-<assign>
-<var>${body_second_request}</var>
-</assign>
-<msg timestamp="20170522 14:27:58.778" level="INFO">${body_second_request} = 10</msg>
-<status status="PASS" endtime="20170522 14:27:58.778" starttime="20170522 14:27:58.778"></status>
-</kw>
-<kw name="Log To Console" library="BuiltIn">
-<doc>Logs the given message to the console.</doc>
-<arguments>
-<arg>${body_second_request}</arg>
-</arguments>
-<status status="PASS" endtime="20170522 14:27:58.780" starttime="20170522 14:27:58.778"></status>
-</kw>
-<kw name="Evaluate" library="BuiltIn">
-<doc>Evaluates the given expression in Python and returns the results.</doc>
-<arguments>
-<arg>${body_second_request}-1</arg>
-</arguments>
-<assign>
-<var>${last_index}</var>
-</assign>
-<msg timestamp="20170522 14:27:58.781" level="INFO">${last_index} = 9</msg>
-<status status="PASS" endtime="20170522 14:27:58.781" starttime="20170522 14:27:58.780"></status>
-</kw>
-<kw name="Log To Console" library="BuiltIn">
-<doc>Logs the given message to the console.</doc>
-<arguments>
-<arg>${last_index}</arg>
-</arguments>
-<status status="PASS" endtime="20170522 14:27:58.786" starttime="20170522 14:27:58.782"></status>
-</kw>
-<kw name="Get Json Value" library="HttpLibrary.HTTP">
-<doc>Get the target node of the JSON document `json_string` specified by `json_pointer`.</doc>
-<arguments>
-<arg>${body_first_request}</arg>
-<arg>/${last_index}/id</arg>
-</arguments>
-<assign>
-<var>${json_id}</var>
-</assign>
-<msg timestamp="20170522 14:27:58.788" level="INFO">${json_id} = 24</msg>
-<status status="PASS" endtime="20170522 14:27:58.788" starttime="20170522 14:27:58.786"></status>
-</kw>
-<kw name="Log To Console" library="BuiltIn">
-<doc>Logs the given message to the console.</doc>
-<arguments>
-<arg>${json_id}</arg>
-</arguments>
-<status status="PASS" endtime="20170522 14:27:58.791" starttime="20170522 14:27:58.789"></status>
-</kw>
-<msg timestamp="20170522 14:27:58.794" level="INFO">${id} = 24</msg>
-<status status="PASS" endtime="20170522 14:27:58.795" starttime="20170522 14:27:58.725"></status>
-</kw>
-<kw name="Create Http Context" library="HttpLibrary.HTTP">
-<doc>Sets the HTTP host to use for future requests. You must call this</doc>
-<arguments>
-<arg>${host}</arg>
-<arg>${schema}</arg>
-</arguments>
-<msg timestamp="20170522 14:27:58.797" level="INFO">Host for next HTTP request set to 'localhost:8080'</msg>
-<msg timestamp="20170522 14:27:58.797" level="INFO">Scheme for next HTTP request set to 'http'</msg>
-<status status="PASS" endtime="20170522 14:27:58.797" starttime="20170522 14:27:58.796"></status>
-</kw>
-<kw name="DELETE" library="HttpLibrary.HTTP">
-<doc>Issues a HTTP DELETE request.</doc>
-<arguments>
-<arg>${delete_client_endpoint}${id}</arg>
-</arguments>
-<status status="PASS" endtime="20170522 14:27:58.813" starttime="20170522 14:27:58.798"></status>
-</kw>
-<kw name="Get Response Status" library="HttpLibrary.HTTP">
-<doc>Returns the response status line (e.g. "200 OK" or "404 Not found")</doc>
-<assign>
-<var>${status_code}</var>
-</assign>
-<msg timestamp="20170522 14:27:58.815" level="INFO">${status_code} = 204 No Content</msg>
-<status status="PASS" endtime="20170522 14:27:58.815" starttime="20170522 14:27:58.814"></status>
-</kw>
-<kw name="Get Response Body" library="HttpLibrary.HTTP">
-<doc>Get the response body.</doc>
-<assign>
-<var>${body}</var>
-</assign>
-<msg timestamp="20170522 14:27:58.816" level="INFO">${body} = </msg>
-<status status="PASS" endtime="20170522 14:27:58.816" starttime="20170522 14:27:58.815"></status>
-</kw>
-<kw name="Should Contain" library="BuiltIn">
-<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
-<arguments>
-<arg>${status_code}</arg>
-<arg>204</arg>
-</arguments>
-<status status="PASS" endtime="20170522 14:27:58.817" starttime="20170522 14:27:58.816"></status>
-</kw>
-<status status="PASS" endtime="20170522 14:27:58.817" starttime="20170522 14:27:58.720"></status>
-</kw>
-<status status="PASS" endtime="20170522 14:27:58.818" critical="yes" starttime="20170522 14:27:58.718"></status>
-</test>
-<test id="s1-s1-s1-t3" name="Test case 3 - Modify Last Client">
-<kw name="Modify Last Client" library="client_operations">
-<kw name="Get The ID of The Last Client" library="client_operations">
-<assign>
-<var>${id}</var>
-</assign>
-<kw name="Create Http Context" library="HttpLibrary.HTTP">
-<doc>Sets the HTTP host to use for future requests. You must call this</doc>
-<arguments>
-<arg>${host}</arg>
-<arg>${schema}</arg>
-</arguments>
-<msg timestamp="20170522 14:27:58.822" level="INFO">Host for next HTTP request set to 'localhost:8080'</msg>
-<msg timestamp="20170522 14:27:58.822" level="INFO">Scheme for next HTTP request set to 'http'</msg>
-<status status="PASS" endtime="20170522 14:27:58.822" starttime="20170522 14:27:58.822"></status>
-</kw>
-<kw name="GET" library="HttpLibrary.HTTP">
-<doc>Issues a HTTP GET request.</doc>
-<arguments>
-<arg>${get_all_clients_endpoint}</arg>
-</arguments>
-<status status="PASS" endtime="20170522 14:27:58.849" starttime="20170522 14:27:58.823"></status>
-</kw>
-<kw name="Get Response Status" library="HttpLibrary.HTTP">
-<doc>Returns the response status line (e.g. "200 OK" or "404 Not found")</doc>
-<assign>
-<var>${response_status_first_request}</var>
-</assign>
-<msg timestamp="20170522 14:27:58.854" level="INFO">${response_status_first_request} = 200 OK</msg>
-<status status="PASS" endtime="20170522 14:27:58.855" starttime="20170522 14:27:58.851"></status>
-</kw>
-<kw name="Should Contain" library="BuiltIn">
-<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
-<arguments>
-<arg>${response_status_first_request}</arg>
-<arg>200</arg>
-</arguments>
-<status status="PASS" endtime="20170522 14:27:58.856" starttime="20170522 14:27:58.855"></status>
-</kw>
-<kw name="Get Response Body" library="HttpLibrary.HTTP">
-<doc>Get the response body.</doc>
-<assign>
-<var>${body_first_request}</var>
-</assign>
-<msg timestamp="20170522 14:27:58.857" level="INFO">${body_first_request} = [{"id":1,"name":"JO\xc3\x83O PAULO","createDate":1451602800000,"email":"JP.ALENCAR@HOTMAIL.COM","gender":"M","socialSecurityNumber":"14190842"},{"id":4,"name":"THALLYS","createDate":1451602800000,"ema...</msg>
-<status status="PASS" endtime="20170522 14:27:58.858" starttime="20170522 14:27:58.857"></status>
-</kw>
-<kw name="GET" library="HttpLibrary.HTTP">
-<doc>Issues a HTTP GET request.</doc>
-<arguments>
-<arg>${get_client_counter_endpoint}</arg>
-</arguments>
-<status status="PASS" endtime="20170522 14:27:58.876" starttime="20170522 14:27:58.858"></status>
-</kw>
-<kw name="Get Response Status" library="HttpLibrary.HTTP">
-<doc>Returns the response status line (e.g. "200 OK" or "404 Not found")</doc>
-<assign>
-<var>${response_status_second_request}</var>
-</assign>
-<msg timestamp="20170522 14:27:58.877" level="INFO">${response_status_second_request} = 200 OK</msg>
-<status status="PASS" endtime="20170522 14:27:58.878" starttime="20170522 14:27:58.877"></status>
-</kw>
-<kw name="Should Contain" library="BuiltIn">
-<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
-<arguments>
-<arg>${response_status_second_request}</arg>
-<arg>200</arg>
-</arguments>
-<status status="PASS" endtime="20170522 14:27:58.880" starttime="20170522 14:27:58.879"></status>
-</kw>
-<kw name="Get Response Body" library="HttpLibrary.HTTP">
-<doc>Get the response body.</doc>
-<assign>
-<var>${body_second_request}</var>
-</assign>
-<msg timestamp="20170522 14:27:58.882" level="INFO">${body_second_request} = 9</msg>
-<status status="PASS" endtime="20170522 14:27:58.882" starttime="20170522 14:27:58.881"></status>
-</kw>
-<kw name="Log To Console" library="BuiltIn">
-<doc>Logs the given message to the console.</doc>
-<arguments>
-<arg>${body_second_request}</arg>
-</arguments>
-<status status="PASS" endtime="20170522 14:27:58.883" starttime="20170522 14:27:58.883"></status>
-</kw>
-<kw name="Evaluate" library="BuiltIn">
-<doc>Evaluates the given expression in Python and returns the results.</doc>
-<arguments>
-<arg>${body_second_request}-1</arg>
-</arguments>
-<assign>
-<var>${last_index}</var>
-</assign>
-<msg timestamp="20170522 14:27:58.885" level="INFO">${last_index} = 8</msg>
-<status status="PASS" endtime="20170522 14:27:58.885" starttime="20170522 14:27:58.884"></status>
-</kw>
-<kw name="Log To Console" library="BuiltIn">
-<doc>Logs the given message to the console.</doc>
-<arguments>
-<arg>${last_index}</arg>
-</arguments>
-<status status="PASS" endtime="20170522 14:27:58.886" starttime="20170522 14:27:58.886"></status>
-</kw>
-<kw name="Get Json Value" library="HttpLibrary.HTTP">
-<doc>Get the target node of the JSON document `json_string` specified by `json_pointer`.</doc>
-<arguments>
-<arg>${body_first_request}</arg>
-<arg>/${last_index}/id</arg>
-</arguments>
-<assign>
-<var>${json_id}</var>
-</assign>
-<msg timestamp="20170522 14:27:58.888" level="INFO">${json_id} = 23</msg>
-<status status="PASS" endtime="20170522 14:27:58.888" starttime="20170522 14:27:58.887"></status>
-</kw>
-<kw name="Log To Console" library="BuiltIn">
-<doc>Logs the given message to the console.</doc>
-<arguments>
-<arg>${json_id}</arg>
-</arguments>
-<status status="PASS" endtime="20170522 14:27:58.889" starttime="20170522 14:27:58.889"></status>
-</kw>
-<msg timestamp="20170522 14:27:58.890" level="INFO">${id} = 23</msg>
-<status status="PASS" endtime="20170522 14:27:58.890" starttime="20170522 14:27:58.820"></status>
-</kw>
-<kw name="Modify Json data For a Client" library="client_operations">
-<arguments>
-<arg>${id}</arg>
-</arguments>
-<assign>
-<var>${request_body}</var>
-</assign>
-<kw name="Set Variable" library="BuiltIn">
-<doc>Returns the given values which can then be assigned to a variables.</doc>
-<arguments>
-<arg>${last_id}</arg>
-</arguments>
-<assign>
-<var>${id}</var>
-</assign>
-<msg timestamp="20170522 14:27:58.892" level="INFO">${id} = 23</msg>
-<status status="PASS" endtime="20170522 14:27:58.892" starttime="20170522 14:27:58.891"></status>
-</kw>
+<kw name="perform create new client" library="page_create_client">
 <kw name="Generate Random String" library="String">
 <doc>Generates a string with a desired ``length`` from the given ``chars``.</doc>
 <arguments>
-<arg>10</arg>
+<arg>7</arg>
 <arg>[LOWER]</arg>
 </arguments>
 <assign>
 <var>${name}</var>
 </assign>
-<msg timestamp="20170522 14:27:58.894" level="INFO">${name} = zjnaelppki</msg>
-<status status="PASS" endtime="20170522 14:27:58.894" starttime="20170522 14:27:58.893"></status>
-</kw>
-<kw name="Set Variable" library="BuiltIn">
-<doc>Returns the given values which can then be assigned to a variables.</doc>
-<arguments>
-<arg>1451602800000</arg>
-</arguments>
-<assign>
-<var>${createDate}</var>
-</assign>
-<msg timestamp="20170522 14:27:58.896" level="INFO">${createDate} = 1451602800000</msg>
-<status status="PASS" endtime="20170522 14:27:58.896" starttime="20170522 14:27:58.895"></status>
+<msg timestamp="20170523 00:07:32.702" level="INFO">${name} = nzotits</msg>
+<status status="PASS" endtime="20170523 00:07:32.702" starttime="20170523 00:07:32.701"></status>
 </kw>
 <kw name="Catenate" library="BuiltIn">
 <doc>Catenates the given items together and returns the resulted string.</doc>
 <arguments>
 <arg>SEPARATOR=</arg>
-<arg>${name}@hotmail.com"</arg>
+<arg>${name}@email.com</arg>
 </arguments>
 <assign>
 <var>${email}</var>
 </assign>
-<msg timestamp="20170522 14:27:58.897" level="INFO">${email} = zjnaelppki@hotmail.com"</msg>
-<status status="PASS" endtime="20170522 14:27:58.898" starttime="20170522 14:27:58.897"></status>
+<msg timestamp="20170523 00:07:32.703" level="INFO">${email} = nzotits@email.com</msg>
+<status status="PASS" endtime="20170523 00:07:32.703" starttime="20170523 00:07:32.703"></status>
 </kw>
 <kw name="Generate Random String" library="String">
 <doc>Generates a string with a desired ``length`` from the given ``chars``.</doc>
 <arguments>
-<arg>1</arg>
-<arg>MF</arg>
-</arguments>
-<assign>
-<var>${gender}</var>
-</assign>
-<msg timestamp="20170522 14:27:58.899" level="INFO">${gender} = M</msg>
-<status status="PASS" endtime="20170522 14:27:58.900" starttime="20170522 14:27:58.898"></status>
-</kw>
-<kw name="Generate Random String" library="String">
-<doc>Generates a string with a desired ``length`` from the given ``chars``.</doc>
-<arguments>
-<arg>9</arg>
+<arg>7</arg>
 <arg>[NUMBERS]</arg>
 </arguments>
 <assign>
-<var>${socialSecurityNumber}</var>
+<var>${security_number}</var>
 </assign>
-<msg timestamp="20170522 14:27:58.901" level="INFO">${socialSecurityNumber} = 368442708</msg>
-<status status="PASS" endtime="20170522 14:27:58.902" starttime="20170522 14:27:58.900"></status>
+<msg timestamp="20170523 00:07:32.704" level="INFO">${security_number} = 0626538</msg>
+<status status="PASS" endtime="20170523 00:07:32.704" starttime="20170523 00:07:32.704"></status>
 </kw>
-<kw name="Create Dictionary" library="BuiltIn">
-<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<kw name="Input Text" library="Selenium2Library">
+<doc>Types the given `text` into text field identified by `locator`.</doc>
 <arguments>
-<arg>id=${id}</arg>
-<arg>name=${name}</arg>
-<arg>createDate=${createDate}</arg>
-<arg>email=${email}</arg>
-<arg>gender=${gender}</arg>
-<arg>socialSecurityNumber=${socialSecurityNumber}</arg>
+<arg>${client_pg_textfield_name}</arg>
+<arg>${name}</arg>
 </arguments>
-<assign>
-<var>${dictionary}</var>
-</assign>
-<msg timestamp="20170522 14:27:58.914" level="INFO">${dictionary} = {u'id': '23', u'name': u'zjnaelppki', u'createDate': u'1451602800000', u'email': u'zjnaelppki@hotmail.com"', u'gender': u'M', u'socialSecurityNumber': u'368442708'}</msg>
-<status status="PASS" endtime="20170522 14:27:58.915" starttime="20170522 14:27:58.903"></status>
+<msg timestamp="20170523 00:07:32.705" level="INFO">Typing text 'nzotits' into text field 'xpath=//*[@id='name']'</msg>
+<status status="PASS" endtime="20170523 00:07:33.610" starttime="20170523 00:07:32.705"></status>
 </kw>
-<kw name="Stringify Json" library="HttpLibrary.HTTP">
-<doc>Converts the data structure to a string containing its JSON string representation</doc>
+<kw name="Input Text" library="Selenium2Library">
+<doc>Types the given `text` into text field identified by `locator`.</doc>
 <arguments>
-<arg>${dictionary}</arg>
+<arg>${client_pg_textfield_email}</arg>
+<arg>${email}</arg>
 </arguments>
-<assign>
-<var>${client_json}</var>
-</assign>
-<msg timestamp="20170522 14:27:58.916" level="INFO">${client_json} = {"id": "23", "name": "zjnaelppki", "createDate": "1451602800000", "email": "zjnaelppki@hotmail.com\"", "gender": "M", "socialSecurityNumber": "368442708"}</msg>
-<status status="PASS" endtime="20170522 14:27:58.916" starttime="20170522 14:27:58.915"></status>
+<msg timestamp="20170523 00:07:33.614" level="INFO">Typing text 'nzotits@email.com' into text field 'xpath=//*[@id='email']'</msg>
+<status status="PASS" endtime="20170523 00:07:34.735" starttime="20170523 00:07:33.611"></status>
 </kw>
-<msg timestamp="20170522 14:27:58.917" level="INFO">${request_body} = {"id": "23", "name": "zjnaelppki", "createDate": "1451602800000", "email": "zjnaelppki@hotmail.com\"", "gender": "M", "socialSecurityNumber": "368442708"}</msg>
-<status status="PASS" endtime="20170522 14:27:58.917" starttime="20170522 14:27:58.890"></status>
-</kw>
-<kw name="Create Http Context" library="HttpLibrary.HTTP">
-<doc>Sets the HTTP host to use for future requests. You must call this</doc>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click element identified by `locator`.</doc>
 <arguments>
-<arg>${host}</arg>
-<arg>${schema}</arg>
+<arg>${client_pg_radiobutton}</arg>
 </arguments>
-<msg timestamp="20170522 14:27:58.919" level="INFO">Host for next HTTP request set to 'localhost:8080'</msg>
-<msg timestamp="20170522 14:27:58.919" level="INFO">Scheme for next HTTP request set to 'http'</msg>
-<status status="PASS" endtime="20170522 14:27:58.920" starttime="20170522 14:27:58.918"></status>
+<msg timestamp="20170523 00:07:34.737" level="INFO">Clicking element 'xpath=//*[@id='gender:0']'.</msg>
+<status status="PASS" endtime="20170523 00:07:35.375" starttime="20170523 00:07:34.736"></status>
 </kw>
-<kw name="Set Request Header" library="HttpLibrary.HTTP">
-<doc>Sets a request header for the next request.</doc>
+<kw name="Input Text" library="Selenium2Library">
+<doc>Types the given `text` into text field identified by `locator`.</doc>
 <arguments>
-<arg>Content-Type</arg>
-<arg>application/json</arg>
+<arg>${client_pg_social_security_number}</arg>
+<arg>${security_number}</arg>
 </arguments>
-<msg timestamp="20170522 14:27:58.921" level="INFO">Set request header "Content-Type" to "application/json"</msg>
-<status status="PASS" endtime="20170522 14:27:58.922" starttime="20170522 14:27:58.921"></status>
+<msg timestamp="20170523 00:07:35.378" level="INFO">Typing text '0626538' into text field 'xpath=//*[@id='socialSecurityNumber']'</msg>
+<status status="PASS" endtime="20170523 00:07:36.308" starttime="20170523 00:07:35.376"></status>
 </kw>
-<kw name="Set Request Header" library="HttpLibrary.HTTP">
-<doc>Sets a request header for the next request.</doc>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click element identified by `locator`.</doc>
 <arguments>
-<arg>Accept</arg>
-<arg>*/*</arg>
+<arg>${client_pg_button_save}</arg>
 </arguments>
-<msg timestamp="20170522 14:27:58.923" level="INFO">Set request header "Accept" to "*/*"</msg>
-<status status="PASS" endtime="20170522 14:27:58.923" starttime="20170522 14:27:58.922"></status>
+<msg timestamp="20170523 00:07:36.310" level="INFO">Clicking element 'xpath=//*[@id='j_idt52']/a[1]'.</msg>
+<status status="PASS" endtime="20170523 00:07:37.346" starttime="20170523 00:07:36.309"></status>
 </kw>
-<kw name="Set Request Body" library="HttpLibrary.HTTP">
-<doc>Set the request body for the next HTTP request.</doc>
+<kw name="Wait Until Page Contains" library="Selenium2Library">
+<doc>Waits until `text` appears on current page.</doc>
 <arguments>
-<arg>${request_body}</arg>
+<arg>${client_pg_creation}</arg>
 </arguments>
-<msg timestamp="20170522 14:27:58.924" level="INFO">Request body set to "{"id": "23", "name": "zjnaelppki", "createDate": "1451602800000", "email": "zjnaelppki@hotmail.com\"", "gender": "M", "socialSecurityNumber": "368442708"}".</msg>
-<status status="PASS" endtime="20170522 14:27:58.927" starttime="20170522 14:27:58.924"></status>
+<status status="PASS" endtime="20170523 00:07:37.580" starttime="20170523 00:07:37.347"></status>
 </kw>
-<kw name="PUT" library="HttpLibrary.HTTP">
-<doc>Issues a HTTP PUT request.</doc>
+<status status="PASS" endtime="20170523 00:07:37.581" starttime="20170523 00:07:32.701"></status>
+</kw>
+<kw name="perform nav client" library="page_dashboard">
+<kw name="Wait Until Page Contains Element" library="Selenium2Library">
+<doc>Waits until element specified with `locator` appears on current page.</doc>
 <arguments>
-<arg>${put_client_endpoint}${id}</arg>
+<arg>${client_menu}</arg>
 </arguments>
-<status status="PASS" endtime="20170522 14:27:58.945" starttime="20170522 14:27:58.928"></status>
+<status status="PASS" endtime="20170523 00:07:37.799" starttime="20170523 00:07:37.584"></status>
 </kw>
-<kw name="Get Response Status" library="HttpLibrary.HTTP">
-<doc>Returns the response status line (e.g. "200 OK" or "404 Not found")</doc>
-<assign>
-<var>${request_body}</var>
-</assign>
-<msg timestamp="20170522 14:27:58.946" level="INFO">${request_body} = 204 No Content</msg>
-<status status="PASS" endtime="20170522 14:27:58.947" starttime="20170522 14:27:58.946"></status>
-</kw>
-<kw name="Log To Console" library="BuiltIn">
-<doc>Logs the given message to the console.</doc>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click element identified by `locator`.</doc>
 <arguments>
-<arg>${request_body}</arg>
+<arg>${client_menu}</arg>
 </arguments>
-<status status="PASS" endtime="20170522 14:27:58.949" starttime="20170522 14:27:58.947"></status>
+<msg timestamp="20170523 00:07:37.800" level="INFO">Clicking element 'xpath=//*[@id='side-menu']/li[5]/a'.</msg>
+<status status="PASS" endtime="20170523 00:07:38.710" starttime="20170523 00:07:37.800"></status>
 </kw>
-<kw name="Should Contain" library="BuiltIn">
-<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" endtime="20170523 00:07:38.711" starttime="20170523 00:07:37.582"></status>
+</kw>
+<kw name="perform delete client" library="page_client">
+<kw name="Wait Until Page Contains Element" library="Selenium2Library">
+<doc>Waits until element specified with `locator` appears on current page.</doc>
 <arguments>
-<arg>${request_body}</arg>
-<arg>204</arg>
+<arg>${client_delete_btn}</arg>
 </arguments>
-<status status="PASS" endtime="20170522 14:27:58.952" starttime="20170522 14:27:58.949"></status>
+<status status="PASS" endtime="20170523 00:07:38.948" starttime="20170523 00:07:38.714"></status>
 </kw>
-<status status="PASS" endtime="20170522 14:27:58.953" starttime="20170522 14:27:58.820"></status>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click element identified by `locator`.</doc>
+<arguments>
+<arg>${client_delete_btn}</arg>
+</arguments>
+<msg timestamp="20170523 00:07:38.949" level="INFO">Clicking element 'xpath=//*[@id='j_idt50']/table/tbody/tr[5]/td[7]/a[3]'.</msg>
+<status status="PASS" endtime="20170523 00:07:40.036" starttime="20170523 00:07:38.949"></status>
 </kw>
-<status status="PASS" endtime="20170522 14:27:58.953" critical="yes" starttime="20170522 14:27:58.819"></status>
+<kw name="Wait Until Page Contains" library="Selenium2Library">
+<doc>Waits until `text` appears on current page.</doc>
+<arguments>
+<arg>${client_pg_label_delete}</arg>
+</arguments>
+<status status="PASS" endtime="20170523 00:07:40.277" starttime="20170523 00:07:40.036"></status>
+</kw>
+<status status="PASS" endtime="20170523 00:07:40.278" starttime="20170523 00:07:38.712"></status>
+</kw>
+<kw type="teardown" name="Teardown" library="test_setup_and_teardown">
+<kw name="Close All Browsers" library="Selenium2Library">
+<doc>Closes all open browsers and resets the browser cache.</doc>
+<status status="PASS" endtime="20170523 00:07:40.543" starttime="20170523 00:07:40.280"></status>
+</kw>
+<status status="PASS" endtime="20170523 00:07:40.544" starttime="20170523 00:07:40.279"></status>
+</kw>
+<status status="PASS" endtime="20170523 00:07:40.544" critical="yes" starttime="20170523 00:07:23.298"></status>
 </test>
-<test id="s1-s1-s1-t4" name="Test case 7">
-<kw name="Get Random ID of Client" library="client_operations">
-<kw name="Create Http Context" library="HttpLibrary.HTTP">
-<doc>Sets the HTTP host to use for future requests. You must call this</doc>
-<arguments>
-<arg>${host}</arg>
-<arg>${schema}</arg>
-</arguments>
-<msg timestamp="20170522 14:27:58.961" level="INFO">Host for next HTTP request set to 'localhost:8080'</msg>
-<msg timestamp="20170522 14:27:58.961" level="INFO">Scheme for next HTTP request set to 'http'</msg>
-<status status="PASS" endtime="20170522 14:27:58.962" starttime="20170522 14:27:58.960"></status>
-</kw>
-<kw name="GET" library="HttpLibrary.HTTP">
-<doc>Issues a HTTP GET request.</doc>
-<arguments>
-<arg>${get_all_clients_endpoint}</arg>
-</arguments>
-<status status="PASS" endtime="20170522 14:27:58.973" starttime="20170522 14:27:58.962"></status>
-</kw>
-<kw name="Get Response Status" library="HttpLibrary.HTTP">
-<doc>Returns the response status line (e.g. "200 OK" or "404 Not found")</doc>
-<assign>
-<var>${response_status_first_request}</var>
-</assign>
-<msg timestamp="20170522 14:27:58.975" level="INFO">${response_status_first_request} = 200 OK</msg>
-<status status="PASS" endtime="20170522 14:27:58.978" starttime="20170522 14:27:58.974"></status>
-</kw>
-<kw name="Should Contain" library="BuiltIn">
-<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
-<arguments>
-<arg>${response_status_first_request}</arg>
-<arg>200</arg>
-</arguments>
-<status status="PASS" endtime="20170522 14:27:58.979" starttime="20170522 14:27:58.978"></status>
-</kw>
-<kw name="Get Response Body" library="HttpLibrary.HTTP">
-<doc>Get the response body.</doc>
-<assign>
-<var>${body_first_request}</var>
-</assign>
-<msg timestamp="20170522 14:27:58.981" level="INFO">${body_first_request} = [{"id":1,"name":"JO\xc3\x83O PAULO","createDate":1451602800000,"email":"JP.ALENCAR@HOTMAIL.COM","gender":"M","socialSecurityNumber":"14190842"},{"id":4,"name":"THALLYS","createDate":1451602800000,"ema...</msg>
-<status status="PASS" endtime="20170522 14:27:58.981" starttime="20170522 14:27:58.980"></status>
-</kw>
-<kw name="Log To Console" library="BuiltIn">
-<doc>Logs the given message to the console.</doc>
-<arguments>
-<arg>${body_first_request}</arg>
-</arguments>
-<status status="PASS" endtime="20170522 14:27:58.983" starttime="20170522 14:27:58.982"></status>
-</kw>
-<kw name="GET" library="HttpLibrary.HTTP">
-<doc>Issues a HTTP GET request.</doc>
-<arguments>
-<arg>${get_client_counter_endpoint}</arg>
-</arguments>
-<status status="PASS" endtime="20170522 14:27:59.011" starttime="20170522 14:27:58.984"></status>
-</kw>
-<kw name="Get Response Status" library="HttpLibrary.HTTP">
-<doc>Returns the response status line (e.g. "200 OK" or "404 Not found")</doc>
-<assign>
-<var>${response_status_second_request}</var>
-</assign>
-<msg timestamp="20170522 14:27:59.014" level="INFO">${response_status_second_request} = 200 OK</msg>
-<status status="PASS" endtime="20170522 14:27:59.015" starttime="20170522 14:27:59.012"></status>
-</kw>
-<kw name="Should Contain" library="BuiltIn">
-<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
-<arguments>
-<arg>${response_status_second_request}</arg>
-<arg>200</arg>
-</arguments>
-<status status="PASS" endtime="20170522 14:27:59.020" starttime="20170522 14:27:59.017"></status>
-</kw>
-<kw name="Get Response Body" library="HttpLibrary.HTTP">
-<doc>Get the response body.</doc>
-<assign>
-<var>${body_second_request}</var>
-</assign>
-<msg timestamp="20170522 14:27:59.022" level="INFO">${body_second_request} = 9</msg>
-<status status="PASS" endtime="20170522 14:27:59.022" starttime="20170522 14:27:59.021"></status>
-</kw>
-<kw name="Log To Console" library="BuiltIn">
-<doc>Logs the given message to the console.</doc>
-<arguments>
-<arg>${body_second_request}</arg>
-</arguments>
-<status status="PASS" endtime="20170522 14:27:59.024" starttime="20170522 14:27:59.023"></status>
-</kw>
-<status status="PASS" endtime="20170522 14:27:59.025" starttime="20170522 14:27:58.959"></status>
-</kw>
-<status status="PASS" endtime="20170522 14:27:59.025" critical="yes" starttime="20170522 14:27:58.954"></status>
-</test>
-<status status="PASS" endtime="20170522 14:27:59.026" starttime="20170522 14:27:58.370"></status>
+<status status="PASS" endtime="20170523 00:07:40.546" starttime="20170523 00:07:23.000"></status>
 </suite>
-<status status="PASS" endtime="20170522 14:27:59.030" starttime="20170522 14:27:58.365"></status>
+<status status="PASS" endtime="20170523 00:07:40.555" starttime="20170523 00:07:22.995"></status>
 </suite>
-<status status="PASS" endtime="20170522 14:27:59.033" starttime="20170522 14:27:58.309"></status>
+<status status="PASS" endtime="20170523 00:07:40.562" starttime="20170523 00:07:22.937"></status>
 </suite>
 <statistics>
 <total>
-<stat fail="0" pass="4">Critical Tests</stat>
-<stat fail="0" pass="4">All Tests</stat>
+<stat fail="0" pass="1">Critical Tests</stat>
+<stat fail="0" pass="1">All Tests</stat>
 </total>
 <tag>
 </tag>
 <suite>
-<stat fail="0" id="s1" name="Project-Ci-Saera-Mattiass" pass="4">Project-Ci-Saera-Mattiass</stat>
-<stat fail="0" id="s1-s1" name="Robot-Framework-Backend" pass="4">Project-Ci-Saera-Mattiass.Robot-Framework-Backend</stat>
-<stat fail="0" id="s1-s1-s1" name="Test Suite" pass="4">Project-Ci-Saera-Mattiass.Robot-Framework-Backend.Test Suite</stat>
+<stat fail="0" id="s1" name="Project-Ci-Saera-Mattiass" pass="1">Project-Ci-Saera-Mattiass</stat>
+<stat fail="0" id="s1-s1" name="Robot-Framework-Frontend" pass="1">Project-Ci-Saera-Mattiass.Robot-Framework-Frontend</stat>
+<stat fail="0" id="s1-s1-s1" name="Regression Suite" pass="1">Project-Ci-Saera-Mattiass.Robot-Framework-Frontend.Regression Suite</stat>
 </suite>
 </statistics>
 <errors>
