@@ -1,5 +1,5 @@
 *** Settings ***
-Resource                 client_operations.robot
+Resource                 ./operations/client_operations.robot
 
 *** Test case ***
     

@@ -153,7 +153,7 @@ Modify Last Client
     Should Contain                             ${request_body}             204
 
 
-elete Last Client
+Delete Last Client
     ${id}=                                     Get The ID of The Last Client
     Create Http Context                        ${host}                    ${schema}
     Delete                                     ${delete_client_endpoint}${id}
