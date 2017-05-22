@@ -1,7 +1,6 @@
 *** Settings ***
 Resource                                     page_login.robot
 Resource                                     page_bedroom.robot
-Resource                                     page_bill.robot
 
 
 *** variables ***

@@ -1,5 +1,4 @@
 *** Settings ***
-Resource                                     page_create_hotel_reservation.robot
 
 *** variables ***
 ${reservation_pg_label}                            List
