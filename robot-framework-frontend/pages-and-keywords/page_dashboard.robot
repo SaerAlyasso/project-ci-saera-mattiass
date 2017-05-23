@@ -15,6 +15,10 @@ ${bill_menu}                                xpath=//*[@id='side-menu']/li[4]/a
 
 ${reservation_menu}                         xpath=//*[@id='side-menu']/li[6]/a
 
+${client_menu}                              xpath=//*[@id='side-menu']/li[5]/a
+
+
+
 
 *** Keywords ***
 perform logout     
@@ -34,10 +38,16 @@ perform nav bedroom
 perform nav bill 
     Wait Until Page Contains Element           ${bill_menu} 
     click element                              ${bill_menu} 
-    Title Should be                            ${bill_pg_label}  
+ 
     
 perform nav reservation 
     Wait Until Page Contains Element           ${reservation_menu} 
     click element                              ${reservation_menu} 
     Title Should be                            ${reservation_pg_label}
+    
+perform nav client        
+    Wait until Page Contains Element            ${client_menu}
+    click element                               ${client_menu}
+    
+
     
