@@ -64,11 +64,11 @@ Get The ID of The Last Client
     ${response_status_second_request}=         Get Response Status
     Should Contain                             ${response_status_second_request}          200
     ${body_second_request}=                    Get Response Body
-    Log to Console                             ${body_second_request}
+    #Log to Console                             ${body_second_request}
     ${last_index}=                             Evaluate      ${body_second_request}-1
-    Log to Console                             ${last_index}
+    #Log to Console                             ${last_index}
     ${json_id}=                                Get Json Value        ${body_first_request}         /${last_index}/id        
-    Log to Console                             ${json_id}         
+    #Log to Console                             ${json_id}         
     [Return]                                   ${json_id}
 
 Get Random ID of Client
