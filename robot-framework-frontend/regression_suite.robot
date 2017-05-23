@@ -34,6 +34,39 @@ Test index button on hotel reservation
     login into the system
     perform nav reservation
     perform nav index button hotal reservation   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     
 Test 1
     login into the system
