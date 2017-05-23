@@ -11,7 +11,7 @@ Resource                             ./pages-and-keywords/page_reservation.robot
 Resource                             ./pages-and-keywords/page_create_client.robot
 Resource                             ./pages-and-keywords/page_create_bill.robot
 Resource                             ./pages-and-keywords/page_bill.robot
-
+Resource                             ./pages-and-keywords/page_view_bedroom.robot
 
 Test setup                          Setup  
 Test teardown                       Teardown 
@@ -60,9 +60,31 @@ Test delete client
      perform create new bill
  
  Test delete bill
+ # dont work with cancel
      login into the system
      perform nav bill
      perform nav to create new bill
      perform create new bill
      perform nav bill
      perform delete bill
+     
+ Test View first bedroom in list
+     login into the system
+     perform nav bedroom 
+     perform nav to create new bedroom 
+     perform create new bedroom 
+     perform nav bedroom
+     perform "View" first bedroom in list 
+     compare bedroom info
+
+Test Delete first bedroom from list in View
+     login into the system
+     perform nav bedroom 
+     perform nav to create new bedroom 
+     perform create new bedroom 
+     perform nav bedroom
+     perform "View" first bedroom in list 
+     compare bedroom info
+     perform delete bedroom from view
+     
+ 
