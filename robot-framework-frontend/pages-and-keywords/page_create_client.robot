@@ -13,11 +13,12 @@ ${client_pg_label}                      Create New Client
 ***keywords***
 perform create new client
     
-    ${name}                    Generate Random String    7     [LOWER]
-    ${email}                   Catenate    SEPARATOR=          ${name}@email.com  
+    ${client_name}                    Generate Random String    7     [LOWER]
+    ${email}                   Catenate    SEPARATOR=          ${client_name}@email.com  
     ${security_number}         Generate Random String    7     [NUMBERS]
+    Set Global Variable       ${client_name} 
     
-   input text                 ${client_pg_textfield_name}                 ${name}
+   input text                 ${client_pg_textfield_name}                 ${client_name}
    input text                 ${client_pg_textfield_email}                ${email} 
    click element              ${client_pg_radiobutton}  
    input text                 ${client_pg_social_security_number}         ${security_number}
