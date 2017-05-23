@@ -24,8 +24,8 @@ Test create new bedroom
 Test delete bedroom 
     login into the system
     perform nav bedroom   
-    perform nav to create new bedroom 
-    perform create new bedroom 
+   # perform nav to create new bedroom 
+   # perform create new bedroom 
     perform nav bedroom
     perform delete bedroom
     
@@ -34,3 +34,9 @@ Test index button on hotel reservation
     login into the system
     perform nav reservation
     perform nav index button hotal reservation   
+    
+Test 1
+    login into the system
+    perform nav bedroom 
+    ${count}=             Get matching Xpath Count   .//*[@id='j_idt50']/table/tbody/tr
+    Log to console            ${count}
